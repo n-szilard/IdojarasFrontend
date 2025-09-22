@@ -1,0 +1,44 @@
+<h2>
+    <i class="bi bi-person-fill"></i>
+    Profil
+</h2>
+<div class="profilePictureContainer col">
+    <img class="profilePicture" src="../assets/img/pfp_placeholder.png" alt="">
+    <p id="pictureName">Név</p>
+</div>
+<div class="profileContainer row">
+    <div id="nevEsEmail" class="col d-flex flex-column">
+        <div class="mb-3">
+            <label for="nameField" class="form-label">Név</label>
+            <input type="text" class="form-control" id="nameField" disabled>
+        </div>
+        <div class="mb-3">
+            <label for="emailField" class="form-label">Email cím</label>
+            <input type="email" class="form-control" id="emailField" disabled>
+        </div>
+
+        <div class="mt-auto">
+            <button class="btn btn-warning" onclick="updateProfile()">Módosítás</button>
+            <button class="btn btn-primary">Mentés</button>
+        </div>
+    </div>
+    <div id="jelszoModosit" class="col">
+        <div class="mb-3">
+            <label for="passwordField" class="form-label">Jelenlegi jelszó</label>
+            <input type="password" class="form-control" id="passwordField">
+        </div>
+
+        <div class="mb-3">
+            <label for="passwordField" class="form-label">Új jelszó</label>
+            <input type="password" class="form-control" id="newPasswordField">
+        </div>
+
+        <div class="mb-3">
+            <label for="passwordField" class="form-label">Új jelszó megerősítése</label>
+            <input type="password" class="form-control" id="newPasswordConfirmField">
+        </div>
+
+        <button class="btn btn-warning">Módosítás</button>
+        <button class="btn btn-primary">Mentés</button>
+    </div>
+</div>

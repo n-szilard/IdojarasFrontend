@@ -13,7 +13,7 @@ async function registration() {
     }
 
     if (passwordField.value != confirmField.value) {
-        toastTrigger('Hiba','A két jelszó nem egyezik!');
+        toastTrigger('Hiba', 'A két jelszó nem egyezik!');
         return;
     }
 
@@ -38,7 +38,7 @@ async function registration() {
                 email: emailField.value,
                 password: passwordField.value
             })
-            
+
         });
 
         const data = await res.json();
@@ -52,7 +52,7 @@ async function registration() {
             toastTrigger('Siker', data.msg);
         }
     } catch (error) {
-        toastTrigger('Hiba', error);        
+        toastTrigger('Hiba', error);
     }
 }
 
@@ -99,4 +99,37 @@ function logout() {
     sessionStorage.removeItem('loggedUser');
     getLoggedUser();
     toastTrigger('Kijelentkezés', 'Sikeres kijelentkezés!')
+}
+
+function getProfile() {
+    let nameField = document.getElementById('nameField');
+    let emailField = document.getElementById('emailField');
+
+    if (loggedUser) {
+        nameField.value = loggedUser.name;
+        emailField.value = loggedUser.email;
+    }
+}
+
+function updateProfile() {
+    let nameField = document.getElementById('nameField');
+    let emailField = document.getElementById('emailField');
+
+    if (nameField.value == '' || emailField.value == '') {
+        toastTrigger('Hiba', 'Nem adtál meg minden adatot!');
+        return;
+    }
+
+    if (!emailRegExp.test(emailField.value)) {
+        toastTrigger('Hiba', 'Nem megfelelő email cím!');
+        return;
+    }
+
+    try {
+        
+    } catch (error) {
+        toastTrigger('Hiba', error);
+    }
+
+    getLoggedUser();
 }

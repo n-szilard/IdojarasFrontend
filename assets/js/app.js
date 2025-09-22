@@ -21,6 +21,15 @@ let loggedUser = null;
 
 async function render(view) {
     main.innerHTML = await (await fetch(`views/${view}.html`)).text();
+
+    switch (view) {
+        case "profile":
+            getProfile();
+            break;
+    
+        default:
+            break;
+    }
 }
 
 async function getLoggedUser() {
@@ -28,7 +37,7 @@ async function getLoggedUser() {
         loggedUser = JSON.parse(sessionStorage.getItem('loggedUser'));
         loggedOutMenu.classList.add('hide');
         loggedInMenu.classList.remove('hide');
-        await render('main');
+        await render('profile');
     } else {
         loggedUser = null;
         loggedOutMenu.classList.remove('hide');
