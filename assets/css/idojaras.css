@@ -1,0 +1,48 @@
+nav {
+    position: relative;
+    width: 100%;
+    border-radius: 16px 16px 0 0;
+}
+
+#themeSwitch {
+    cursor: pointer;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+}
+
+footer {
+    text-align: center;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+footer p {
+    margin-bottom: 0;
+}
+
+.container {
+    border: 1px solid var(--bs-secondary);
+    border-radius: 16px;
+    margin-top: 32px;
+    padding: 0;
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+}
+
+main {
+    border-top: 1px solid var(--bs-secondary);
+    border-bottom: 1px solid var(--bs-secondary);
+    padding: 16px;
+}
+
+#logo {
+    margin-right: 8px;
+}
+
+nav a {
+    cursor: pointer;
+}
+
+.hide {
+    display: none;
+}
