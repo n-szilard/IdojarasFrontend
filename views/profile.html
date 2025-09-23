@@ -2,12 +2,12 @@
     <i class="bi bi-person-fill"></i>
     Profil
 </h2>
-<div class="profilePictureContainer col">
+<!-- <div class="profilePictureContainer col">
     <img class="profilePicture" src="../assets/img/pfp_placeholder.png" alt="">
     <p id="pictureName">Név</p>
-</div>
+</div> -->
 <div class="profileContainer row">
-    <div id="nevEsEmail" class="col d-flex flex-column">
+    <div id="nevEsEmail" class="col-12 col-md-6 d-flex flex-column">
         <div class="mb-3">
             <label for="nameField" class="form-label">Név</label>
             <input type="text" class="form-control" id="nameField" disabled>
@@ -18,11 +18,11 @@
         </div>
 
         <div class="mt-auto">
-            <button class="btn btn-warning" onclick="updateProfile()">Módosítás</button>
-            <button class="btn btn-primary">Mentés</button>
+            <button class="btn btn-warning mb-2" onclick="toggleModifyProfile()" id="modifyProfileBtn">Módosítás</button>
+            <button class="btn btn-primary mb-2" onclick="updateProfile()">Mentés</button>
         </div>
     </div>
-    <div id="jelszoModosit" class="col">
+    <div id="jelszoModosit" class="col-12 col-md-6">
         <div class="mb-3">
             <label for="passwordField" class="form-label">Jelenlegi jelszó</label>
             <input type="password" class="form-control" id="passwordField">
@@ -38,7 +38,6 @@
             <input type="password" class="form-control" id="newPasswordConfirmField">
         </div>
 
-        <button class="btn btn-warning">Módosítás</button>
-        <button class="btn btn-primary">Mentés</button>
+        <button class="btn btn-danger mb-2" onclick="updatePassword()">Jelszó módosítása</button>
     </div>
 </div>

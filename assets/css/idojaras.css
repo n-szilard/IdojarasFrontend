@@ -66,3 +66,7 @@ nav a {
     object-fit: cover;
     border-radius: 100%;
 }
+
+.navbar-toggler {
+    margin-right: 16px;
+}

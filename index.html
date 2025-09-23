@@ -32,6 +32,12 @@
 
                     <ul class="navbar-nav" id="loggedInMenu">
                         <li class="nav-item">
+                            <a class="nav-link" onclick="render('main')">Otthon</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" onclick="render('weatherUpload')">Időjárás adatok feltöltése</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" onclick="render('profile')">Profilom</a>
                         </li>
                         <li class="nav-item">
@@ -74,6 +80,7 @@
     <script src="./controllers/themeCtrl.js"></script>
     <script src="./controllers/toastCtrl.js"></script>
     <script src="./controllers/userCtrl.js"></script>
+    <script src="./controllers/weatherCtrl.js"></script>
 </body>
 
 </html>

@@ -1,7 +1,7 @@
 const AppTitle = 'Időjárás App';
 const Author = 'Nagyapáti Szilárd';
 const ServerUrl = 'http://localhost:3000'
-const Copyright = '2025 ©'
+const Copyright = '13.A, 2025©'
 
 let title = document.getElementById('appTitle');
 let author = document.getElementById('author');
@@ -27,6 +27,10 @@ async function render(view) {
             getProfile();
             break;
     
+        case "weatherUpload":
+            setDate();
+            break;
+            
         default:
             break;
     }
@@ -37,7 +41,7 @@ async function getLoggedUser() {
         loggedUser = JSON.parse(sessionStorage.getItem('loggedUser'));
         loggedOutMenu.classList.add('hide');
         loggedInMenu.classList.remove('hide');
-        await render('profile');
+        await render('main');
     } else {
         loggedUser = null;
         loggedOutMenu.classList.remove('hide');
