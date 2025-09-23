@@ -15,8 +15,11 @@ function selectWeatherType(tipus) {
     let havasBtn = document.getElementById('havas');
     let szelesBtn = document.getElementById('szeles');
     let tornadoBtn = document.getElementById('tornado');
+    let kicsitfelhosBtn = document.getElementById('kicsitfelhos');
+    let felhosBtn = document.getElementById('felhos');
+    let jegesoBtn = document.getElementById('jegeso');
 
-    let tipusGombok = [naposBtn, esosBtn, viharosBtn, havasBtn, szelesBtn, tornadoBtn]
+    let tipusGombok = [naposBtn, esosBtn, viharosBtn, havasBtn, szelesBtn, tornadoBtn, kicsitfelhosBtn, jegesoBtn, felhosBtn]
     weatherTipus = tipus;
 
     tipusGombok.forEach(gomb => {
@@ -36,10 +39,45 @@ function uploadWeather() {
     let maxField = document.getElementById('maxHofok');
     let szazelek = document.getElementById('csapadekSzazalek');
     let mmCsapadek = document.getElementById('csapadekMM');
+    let dateField = document.getElementById('dateField');
+
+    if (dateField.value == "" || minField.value == "" || maxField.value == "" || szazelek.value == "" || mmCsapadek.value == "") {
+        toastTrigger('Hiba', 'Nem adtál meg minden adatot!');
+        return;
+    }
 
     if (weatherTipus == "") {
-        toastTrigger('Hiba', 'Nincs kiválasztott időjárás típus')
+        toastTrigger('Hiba', 'Nincs kiválasztott időjárás típus');
+        return;
+    }
+
+    if (minField.value > maxField.value) {
+        toastTrigger('Hiba', 'A minimum hőmérséklet nagyobb, mint a maximum');
+        return;
+    }
+
+    let honap = Number(dateField.value.split('-'[1]));
+
+    let evszakIndex = getEvszakIndex(honap);
+    evszakMin = evszakHatarok[evszakIndex][0];
+    evszakMax = evszakHatarok[evszakIndex][1];
+
+    if (minField.value < evszakMin || maxField.value > evszakMax) {
+        toastTrigger('Hiba', 'A hőmérsékletek nem felelnek meg az évszakhoz tartozó határértékeknek!');
+        return;
     }
 
     
+}
+
+function getEvszakIndex(honap) {
+    if (honap == 1 || honap == 2 || honap == 12) {
+        return 3;
+    } else if (honap == 3 || honap == 4 || honap == 5) {
+        return 0;
+    } else if (honap == 6 || honap == 7 || honap == 8) {
+        return 1;
+    } else {
+        return 2;
+    }
 }
