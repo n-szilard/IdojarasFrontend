@@ -28,7 +28,7 @@ async function render(view) {
             break;
     
         case "weatherUpload":
-            setDate();
+            await setDate();
             break;
             
         default:
@@ -41,7 +41,7 @@ async function getLoggedUser() {
         loggedUser = JSON.parse(sessionStorage.getItem('loggedUser'));
         loggedOutMenu.classList.add('hide');
         loggedInMenu.classList.remove('hide');
-        await render('main');
+        await render('weatherUpload');
     } else {
         loggedUser = null;
         loggedOutMenu.classList.remove('hide');

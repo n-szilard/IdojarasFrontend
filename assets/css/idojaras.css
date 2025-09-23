@@ -70,3 +70,34 @@ nav a {
 .navbar-toggler {
     margin-right: 16px;
 }
+
+.weatherTypeContainer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 450%;
+    padding: 16px;
+    flex-wrap: wrap;
+}
+
+.weatherButton {
+    text-align: center;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-top: 8px;
+    cursor: pointer;
+}
+
+.weatherButton p {
+    font-size: medium;
+}
+
+.weatherSelected {
+    border: 1px solid var(--bs-secondary);
+    border-radius: 8px;
+    background-color: var(--bs-focus-ring-color);
+}
+
+.weatherButton:hover {
+    border-radius: 8px;
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+}

@@ -4,3 +4,51 @@
     <label for="dateField" class="form-label">Dátum</label>
     <input type="date" class="form-control" id="dateField">
 </div>
+<div class="md-3 row">
+    <label class="form-label">Hőmérséklet</label>
+    <div class="input-group col">
+        <input type="number" class="form-control" placeholder="Minimum" id="minHofok">
+        <span class="input-group-text">°C</span>
+    </div>
+    <div class="input-group col">
+        <input type="number" class="form-control" placeholder="Maximum" id="maxHofok">
+        <span class="input-group-text">°C</span>
+    </div>
+</div>
+
+<div class="input-group mt-3">
+    <label for="csapadekMM" class="w-100 mb-2">Csapadék</label>
+    <input type="number" name="csapadekSzazalek" id="csapadekSzazalek" class="form-control rounded-start" min="0" max="100">
+    <span class="input-group-text">%</span>
+    <input type="number" name="csapadekMM" id="csapadekMM" class="form-control" min="0">
+    <span class="input-group-text">mm</span>
+</div>
+
+<div class="weatherTypeContainer">
+    <div class="weatherButton" id="napos" onclick="selectWeatherType('napos')">
+        <i class="bi bi-sun"></i>
+        <p>Napos</p>
+    </div>
+    <div class="weatherButton" id="esos" onclick="selectWeatherType('esos')">
+        <i class="bi bi-cloud-rain"></i>
+        <p>Esős</p>
+    </div>
+    <div class="weatherButton" id="viharos" onclick="selectWeatherType('viharos')">
+        <i class="bi bi-cloud-lightning-rain"></i>
+        <p>Viharos</p>
+    </div>
+    <div class="weatherButton" id="havas" onclick="selectWeatherType('havas')">
+        <i class="bi bi-cloud-snow"></i>
+        <p>Havas</p>
+    </div>
+    <div class="weatherButton" id="szeles" onclick="selectWeatherType('szeles')">
+        <i class="bi bi-wind"></i>
+        <p>Szeles</p>
+    </div>
+    <div class="weatherButton" id="tornado" onclick="selectWeatherType('tornado')">
+        <i class="bi bi-tornado"></i>
+        <p>Tornádó</p>
+    </div>
+</div>
+
+<button class="btn btn-primary" onclick="uploadWeather()">Küldés</button>
