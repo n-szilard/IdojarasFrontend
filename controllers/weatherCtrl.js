@@ -34,7 +34,7 @@ function selectWeatherType(tipus) {
 // Tavasz, nyár, ősz, tél
 let evszakHatarok = [[-5, 28], [10, 40], [-5, 30], [-20, 10]];
 
-function uploadWeather() {
+async function uploadWeather() {
     let minField = document.getElementById('minHofok');
     let maxField = document.getElementById('maxHofok');
     let szazelek = document.getElementById('csapadekSzazalek');
@@ -51,7 +51,7 @@ function uploadWeather() {
         return;
     }
 
-    if (minField.value > maxField.value) {
+    if (Number(minField.value) > Number(maxField.value)) {
         toastTrigger('Hiba', 'A minimum hőmérséklet nagyobb, mint a maximum');
         return;
     }
@@ -62,12 +62,61 @@ function uploadWeather() {
     evszakMin = evszakHatarok[evszakIndex][0];
     evszakMax = evszakHatarok[evszakIndex][1];
 
-    if (minField.value < evszakMin || maxField.value > evszakMax) {
+    if (Number(minField.value) < evszakMin || Number(maxField.value) > evszakMax) {
         toastTrigger('Hiba', 'A hőmérsékletek nem felelnek meg az évszakhoz tartozó határértékeknek!');
         return;
     }
 
-    
+    try {
+         const res = await fetch(`${ServerUrl}/weather`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({  // uid, min, max, szazalek, mm, datum, tipus
+                uid: loggedUser.id,
+                min: Number(minField.value),
+                max: Number(maxField.value),
+                szazalek: Number(szazelek.value),
+                datum: dateField.value,
+                tipus: weatherTipus
+            })
+        });
+
+        let response = await res.json();
+
+        if (res.status == 200) {
+            toastTrigger('Sikeres adatfelvétel', response.msg);
+            dateField.value = '';
+            minField.value = '';
+            maxField.value = '';
+            szazelek.value = '';
+            mmCsapadek.value = '';
+        } else {
+            toastTrigger('Hiba', response.msg);
+        }
+
+    } catch (error) {
+        toastTrigger('Hiba', error)
+    }
+}
+
+async function getWeather() {
+    weather = [];
+    try {
+        const res = await fetch(`${ServerUrl}/weather/${loggedUser.id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+
+        let data = await res.json();
+        data.sort((a,b) => new Date(a.datum) - new Date(b.datum));
+        weather = data;
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 function getEvszakIndex(honap) {

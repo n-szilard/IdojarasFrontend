@@ -89,6 +89,7 @@ async function login() {
 
         sessionStorage.setItem('loggedUser', JSON.stringify(loggedUser));
         getLoggedUser();
+        getWeather();
         toastTrigger('Bejelentkezés', 'Sikeres bejelentkezés!');
     } catch (error) {
         toastTrigger('Hiba', error);

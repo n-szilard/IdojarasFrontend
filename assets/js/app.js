@@ -30,7 +30,11 @@ async function render(view) {
         case "weatherUpload":
             await setDate();
             break;
-            
+        
+        case "eloreJelzes":
+            await getWeather();
+            loadChart();
+            break;
         default:
             break;
     }

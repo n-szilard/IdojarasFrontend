@@ -38,6 +38,9 @@
                             <a class="nav-link" onclick="render('weatherUpload')">Időjárás adatok feltöltése</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" onclick="render('eloreJelzes')">Előrejelzés</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" onclick="render('profile')">Profilom</a>
                         </li>
                         <li class="nav-item">
@@ -74,6 +77,7 @@
 
     <!-- Assets -->
     <script src="./assets/js/bootstrap.min.js"></script>
+    <script src="https://cdn.canvasjs.com/ga/canvasjs.min.js"></script>
     <script src="./assets/js/app.js"></script>
 
     <!-- Controllers -->
@@ -81,6 +85,7 @@
     <script src="./controllers/toastCtrl.js"></script>
     <script src="./controllers/userCtrl.js"></script>
     <script src="./controllers/weatherCtrl.js"></script>
+    <script src="./controllers/canvasCtrl.js"></script>
 </body>
 
 </html>
