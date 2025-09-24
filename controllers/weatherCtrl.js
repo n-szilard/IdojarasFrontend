@@ -1,6 +1,9 @@
 let weather = [];
 let weatherTipus = "";
 
+function resetWeatherType() {
+    weatherTipus = "";
+}
 
 function setDate() {
     let today = new Date().toISOString().split('T')[0];
@@ -78,6 +81,7 @@ async function uploadWeather() {
                 min: Number(minField.value),
                 max: Number(maxField.value),
                 szazalek: Number(szazelek.value),
+                mm: Number(mmCsapadek.value),
                 datum: dateField.value,
                 tipus: weatherTipus
             })
@@ -128,5 +132,50 @@ function getEvszakIndex(honap) {
         return 1;
     } else {
         return 2;
+    }
+}
+
+async function editStep(index) {
+    // Szerkesző megjelenítése:
+
+
+    try {
+        let res = await fetch(`${ServerUrl}/weather/modify`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: weather[index].id,
+                uid: loggedUser.uid,
+                // min, max, szazalek, mm, datum, tipus
+            })
+        });
+    } catch (error) {
+        toastTrigger('Hiba', error)
+    }
+}
+
+async function deleteStep(index) {
+    try {
+        let res = await fetch(`${ServerUrl}/weather/del`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: weather[index].id,
+            })
+        })
+        let response = await res.json();
+        if (res.status == 200) {
+            toastTrigger('Siker', response.msg);
+            await getWeather();
+            loadTable();
+        } else {
+            toastTrigger('Hiba', response.msg);
+        }
+    } catch (error) {
+        toastTrigger('Hiba', error)
     }
 }

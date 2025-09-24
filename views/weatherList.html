@@ -1,0 +1,50 @@
+<h2>Időjárás adatok</h2>
+
+<div id="szerkeszto" class="">
+    <div class="mb-3 col-12 col-lg-4">
+        <label for="dateField" class="form-label">Dátum</label>
+        <input type="date" class="form-control" id="dateField">
+    </div>
+    <div class="md-3 row">
+        <label class="form-label">Hőmérséklet</label>
+        <div class="input-group col">
+            <input type="number" class="form-control" placeholder="Minimum" id="minHofok">
+            <span class="input-group-text">°C</span>
+        </div>
+        <div class="input-group col">
+            <input type="number" class="form-control" placeholder="Maximum" id="maxHofok">
+            <span class="input-group-text">°C</span>
+        </div>
+    </div>
+    
+    <div class="input-group mt-3">
+        <label for="csapadekMM" class="w-100 mb-2">Csapadék</label>
+        <input type="number" name="csapadekSzazalek" id="csapadekSzazalek" class="form-control rounded-start" min="0" max="100">
+        <span class="input-group-text">%</span>
+        <input type="number" name="csapadekMM" id="csapadekMM" class="form-control" min="0">
+        <span class="input-group-text">mm</span>
+    </div>
+    
+    <div class="mt-3 mb-3">
+        <button class="btn btn-warning">Módosítás</button>
+        <button class="btn btn-danger">Mégsem</button>
+    </div>
+    <hr>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Min °C</th>
+            <th>Max °C</th>
+            <th>Eső százalék</th>
+            <th>Csapadék mennyiség</th>
+            <th>Kategória</th>
+            <th>Műveletek</th>
+        </tr>
+    </thead>
+    <tbody id="weatherTableBody">
+        <!-- Dinamikusan feltöltve -->
+    </tbody>
+</table>

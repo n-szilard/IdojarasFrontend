@@ -29,11 +29,16 @@ async function render(view) {
     
         case "weatherUpload":
             await setDate();
+            resetWeatherType();
             break;
         
         case "eloreJelzes":
             await getWeather();
             loadChart();
+            break;
+        case "weatherList":
+            await getWeather();
+            loadTable();
             break;
         default:
             break;
@@ -45,7 +50,7 @@ async function getLoggedUser() {
         loggedUser = JSON.parse(sessionStorage.getItem('loggedUser'));
         loggedOutMenu.classList.add('hide');
         loggedInMenu.classList.remove('hide');
-        await render('weatherUpload');
+        await render('weatherList');
     } else {
         loggedUser = null;
         loggedOutMenu.classList.remove('hide');
