@@ -40,6 +40,10 @@ async function render(view) {
             await getWeather();
             loadTable();
             break;
+        case "calendar":
+            await getCalendarData();
+            initCalendar();
+            break;
         default:
             break;
     }
