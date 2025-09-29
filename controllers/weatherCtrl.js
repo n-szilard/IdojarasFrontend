@@ -1,5 +1,7 @@
 let weather = [];
 let weatherTipus = "";
+let editMode = false;
+let selectedIndex = -1;
 
 function resetWeatherType() {
     weatherTipus = "";
@@ -135,9 +137,43 @@ function getEvszakIndex(honap) {
     }
 }
 
-async function editStep(index) {
-    // Szerkesző megjelenítése:
+function editStep(index) {
+    if (!(editMode && selectedIndex != index)) {
+        toggleEditMode();
+    }
+    
+    let dateField = document.getElementById('dateField');
+    let minField = document.getElementById('minHofok');
+    let maxField = document.getElementById('maxHofok');
+    let szazalekField = document.getElementById('csapadekSzazalek');
+    let mmField = document.getElementById('csapadekMM');
 
+    dateField.value = weather[index].datum;
+    minField.value = weather[index].min;
+    maxField.value = weather[index].max;
+    szazalekField.value = weather[index].szazalek;
+    mmField.value = weather[index].mm;
+
+    selectedIndex = index;
+}
+
+function toggleEditMode() {
+    let editor = document.getElementById('szerkeszto');
+    if (editMode) {
+        editor.classList.add('hide');
+        editMode = false;
+    } else {
+        editor.classList.remove('hide')
+        editMode = true;
+    }
+}
+
+async function sendEdit() {
+    let dateField = document.getElementById('dateField');
+    let minField = document.getElementById('minHofok');
+    let maxField = document.getElementById('maxHofok');
+    let szazalekField = document.getElementById('csapadekSzazalek');
+    let mmField = document.getElementById('csapadekMM');
 
     try {
         let res = await fetch(`${ServerUrl}/weather/modify`, {
@@ -146,14 +182,31 @@ async function editStep(index) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                id: weather[index].id,
-                uid: loggedUser.uid,
+                id: weather[selectedIndex].id,
+                uid: loggedUser.id,
+                min: Number(minField.value),
+                max: Number(maxField.value),
+                szazalek: Number(szazalekField.value),
+                mm: Number(mmField.value),
+                datum: dateField.value,
+                tipus: weather[selectedIndex].tipus
                 // min, max, szazalek, mm, datum, tipus
             })
         });
+        toastTrigger('Siker', 'Sikeres adatmódosítás!');
     } catch (error) {
         toastTrigger('Hiba', error)
     }
+
+    await getWeather();
+    loadTable();
+}
+
+function cancelEditor() {
+    editMode = false;
+    selectedIndex = -1;
+    let editor = document.getElementById('szerkeszto');
+    editor.classList.add('hide')
 }
 
 async function deleteStep(index) {
@@ -170,6 +223,7 @@ async function deleteStep(index) {
         let response = await res.json();
         if (res.status == 200) {
             toastTrigger('Siker', response.msg);
+            cancelEditor();
             await getWeather();
             loadTable();
         } else {

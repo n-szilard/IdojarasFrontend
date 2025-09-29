@@ -1,6 +1,6 @@
 <h2>Időjárás adatok</h2>
 
-<div id="szerkeszto" class="">
+<div id="szerkeszto" class="hide">
     <div class="mb-3 col-12 col-lg-4">
         <label for="dateField" class="form-label">Dátum</label>
         <input type="date" class="form-control" id="dateField">
@@ -26,8 +26,8 @@
     </div>
     
     <div class="mt-3 mb-3">
-        <button class="btn btn-warning">Módosítás</button>
-        <button class="btn btn-danger">Mégsem</button>
+        <button class="btn btn-warning" onclick="sendEdit()">Módosítás</button>
+        <button class="btn btn-danger" onclick="cancelEditor()">Mégsem</button>
     </div>
     <hr>
 </div>
