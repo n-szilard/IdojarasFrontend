@@ -10,6 +10,16 @@ async function getCalendarData() {
             calendarDatas.push({
                 title: `${element.min}°C - ${element.max}°C`,
                 start: element.datum
+            });
+
+            calendarDatas.push({
+                title: `${element.tipus}`,
+                start: element.datum
+            });
+            
+            calendarDatas.push({
+                title: `${element.szazalek}% ${element.mm}mm`,
+                start: element.datum
             })
         });
     } catch (error) {

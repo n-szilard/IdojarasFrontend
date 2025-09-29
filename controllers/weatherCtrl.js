@@ -198,6 +198,7 @@ async function sendEdit() {
         toastTrigger('Hiba', error)
     }
 
+    cancelEditor();
     await getWeather();
     loadTable();
 }
